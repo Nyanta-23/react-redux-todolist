@@ -3,15 +3,15 @@ import React from "react";
 function NavigationTodo() {
   return (
     <section className="">
-      <ul className="flex justify-center gap-5 text-sm">
+      <ul className="flex justify-center gap-3 text-sm">
         <li>
-          <button>All</button>
+          <button className="bg-violet-600 text-gray-50 px-5 py-2 rounded-full">All</button>
         </li>
         <li>
-          <button>Todo</button>
+          <button className="bg-gray-500 text-gray-50 px-5 py-2 rounded-full">Todo</button>
         </li>
         <li>
-          <button>Completed</button>
+          <button className="bg-gray-500 text-gray-50 px-5 py-2 rounded-full">Completed</button>
         </li>
       </ul>
     </section>

@@ -14,7 +14,7 @@ function ListTodo() {
                 type="checkbox"
                 className="w-5 cursor-pointer border-none"
               />
-              <h5 className="text-lg text-left">{todo.value}</h5>
+              <h5 className="text-lg text-left">{todo.todo}</h5>
             </div>
             <div className="flex gap-2">
               <button>✏️</button>

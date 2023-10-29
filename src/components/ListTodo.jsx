@@ -3,24 +3,17 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
 import { deleteTodo } from "../redux/reducers/todo-reducer";
 
-function ListTodo() {
+function ListTodo({ handleEditClick, editInputVisibility }) {
   const { todos } = useSelector((state) => state.todos);
   const dispatch = useDispatch();
 
-  const handleEdit = (e) => {
-    const getId =
-      e.target.parentElement.parentElement.getAttribute("data-todo-id");
-
-    // console.log(todos.map((getValue) => getValue));
-  };
-
   return (
     <section className="flex justify-center">
-      <ul className="flex flex-col mt-5 gap-3">
+      <ul className="flex flex-col mt-5 gap-3 w-[30%]">
         {todos.map((todo) => (
           <li
             key={todo.id}
-            className="flex border font-semibold text-base rounded-sm align-middle px-2 py-2 justify-between gap-20 border-gray-300"
+            className="flex border font-semibold text-base rounded-sm align-middle px-2 py-2 justify-between gap-20 border-gray-300 w-full"
           >
             <div className="flex gap-3">
               <input
@@ -29,10 +22,16 @@ function ListTodo() {
               />
               <h5 className="text-lg text-left">{todo.todo}</h5>
             </div>
-            <div className="flex gap-2">
-              <button onClick={handleEdit}>✏️</button>
-              <button onClick={() => dispatch(deleteTodo(todo.id))}>🗑️</button>
-            </div>
+            {!editInputVisibility ? (
+              <div className="flex gap-2">
+                <button onClick={() => handleEditClick(todo)}>✏️</button>
+                <button onClick={() => dispatch(deleteTodo(todo.id))}>
+                  🗑️
+                </button>
+              </div>
+            ) : (
+              ""
+            )}
           </li>
         ))}
       </ul>

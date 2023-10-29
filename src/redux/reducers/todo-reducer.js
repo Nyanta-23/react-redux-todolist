@@ -10,6 +10,11 @@ const initialState = {
       todo: "text2",
       completed: false,
     },
+    {
+      id: 3,
+      todo: "text3",
+      completed: true,
+    },
   ],
 };
 
@@ -25,10 +30,30 @@ function todoReducer(state = initialState, action) {
       };
 
     case "DELETE_TODO":
-      const filteringTodo = state.todos.filter((todo) => todo.id !== action.payload);
+      const filteringTodo = state.todos.filter(
+        (todo) => todo.id !== action.payload
+      );
       return {
         state,
-        todos: filteringTodo
+        todos: filteringTodo,
+      };
+
+    case "UPDATE_TODO":
+      const updatedTodos = state.todos.map((todo) => {
+        if (todo.id === action.payload.id) {
+          return {
+            ...todo,
+            todo: action.payload.todo,
+            completed: action.payload.completed,
+          };
+        } else {
+          return todo;
+        }
+      });
+
+      return {
+        ...state,
+        todos: updatedTodos,
       };
 
     default:
@@ -43,12 +68,18 @@ export function addTodo(input) {
   };
 }
 
-export function deleteTodo(id){
-  return{
+export function deleteTodo(id) {
+  return {
     type: "DELETE_TODO",
-    payload: id
-  }
+    payload: id,
+  };
 }
 
+export function updateTodo(input) {
+  return {
+    type: "UPDATE_TODO",
+    payload: input,
+  };
+}
 
 export default todoReducer;

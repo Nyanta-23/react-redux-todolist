@@ -24,8 +24,12 @@ function todoReducer(state = initialState, action) {
         ],
       };
 
-    case "EDIT_TODO":
-      
+    case "DELETE_TODO":
+      const filteringTodo = state.todos.filter((todo) => todo.id !== action.payload);
+      return {
+        state,
+        todos: filteringTodo
+      };
 
     default:
       return state;
@@ -38,5 +42,13 @@ export function addTodo(input) {
     payload: input,
   };
 }
+
+export function deleteTodo(id){
+  return{
+    type: "DELETE_TODO",
+    payload: id
+  }
+}
+
 
 export default todoReducer;

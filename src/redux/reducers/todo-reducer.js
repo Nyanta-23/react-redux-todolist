@@ -1,21 +1,5 @@
 const initialState = {
-  todos: [
-    {
-      id: 1,
-      todo: "text",
-      completed: false,
-    },
-    {
-      id: 2,
-      todo: "text2",
-      completed: false,
-    },
-    {
-      id: 3,
-      todo: "text3",
-      completed: true,
-    },
-  ],
+  todos: [],
 
   filter: "all",
 };

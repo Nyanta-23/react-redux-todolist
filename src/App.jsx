@@ -1,11 +1,10 @@
 import React from "react";
-import CardTodo from "./CardTodo";
+import TodoApp from "./TodoApp";
 
 function App() {
-
   return (
     <>
-      <CardTodo />
+      <TodoApp />
     </>
   )
 } 

@@ -22,7 +22,7 @@ function AddTodoForm() {
         type="text"
         id="todo-input"
         placeholder="What to do?"
-        className="border px-2 py-2 font-semibold mx-3 text-base rounded-sm outline-violet-500"
+        className="border px-2 py-2 font-semibold mx-3 text-base rounded-sm outline-violet-500 w-96"
         value={add}
         onChange={(e) => setAdd(e.target.value)}
       />

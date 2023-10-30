@@ -31,7 +31,7 @@ function EditTodoForm({ editTodo, cancelEdit }) {
           type="text"
           id="todo-edit"
           placeholder="Edit to do"
-          className="border px-2 py-2 font-semibold mx-3 text-base rounded-sm outline-violet-500"
+          className="border px-2 py-2 font-semibold mx-3 text-base rounded-sm outline-violet-500 w-96"
           value={edit}
           onChange={(e) => setEdit(e.target.value)}
         />
@@ -44,7 +44,7 @@ function EditTodoForm({ editTodo, cancelEdit }) {
       </form>
 
       <button
-        className="bg-red-500 font-medium text-gray-50 py-2 px-3 rounded-sm mt-2 w-[22%]"
+        className="bg-red-500 font-medium text-gray-50 py-2 px-3 rounded-sm mt-2 w-96"
         onClick={cancelEdit}
       >
         Cancel

@@ -73,11 +73,11 @@ function todoReducer(state = initialState, action) {
         ...state,
         todos: statusCompleted,
       };
-    
+
     case "FILTER_TODO":
       return {
         ...state,
-        filter: action.payload
+        filter: action.payload,
       };
 
     default:

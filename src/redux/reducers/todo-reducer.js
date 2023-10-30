@@ -50,11 +50,28 @@ function todoReducer(state = initialState, action) {
           return todo;
         }
       });
-
       return {
         ...state,
         todos: updatedTodos,
       };
+
+    case "UPDATED_STATUS_TODO":
+
+    const statusCompleted = state.todos.map((todo) => {
+      if(todo.id === action.payload){
+        console.log(todo.completed);
+        return{
+          ...todo,
+          completed: !todo.completed
+        }
+      } else{
+        return todo
+      }
+    });
+    return{
+      ...state,
+      todos: statusCompleted
+    }
 
     default:
       return state;
@@ -80,6 +97,13 @@ export function updateTodo(input) {
     type: "UPDATE_TODO",
     payload: input,
   };
+}
+
+export function isCompleted(id){
+  return{
+    type: "UPDATED_STATUS_TODO",
+    payload: id
+  }
 }
 
 export default todoReducer;

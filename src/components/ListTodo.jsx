@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
-import { deleteTodo } from "../redux/reducers/todo-reducer";
+import { deleteTodo, isCompleted } from "../redux/reducers/todo-reducer";
 
 function ListTodo({ handleEditClick, editInputVisibility }) {
   const { todos } = useSelector((state) => state.todos);
@@ -19,8 +19,18 @@ function ListTodo({ handleEditClick, editInputVisibility }) {
               <input
                 type="checkbox"
                 className="w-5 cursor-pointer border-none"
+                onChange={() => dispatch(isCompleted(todo.id))}
+                checked={todo.completed}
               />
-              <h5 className="text-lg text-left">{todo.todo}</h5>
+              <h5
+                className={
+                  todo.completed
+                    ? "text-lg text-left line-through"
+                    : "text-lg text-left"
+                }
+              >
+                {todo.todo}
+              </h5>
             </div>
             {!editInputVisibility ? (
               <div className="flex gap-2">

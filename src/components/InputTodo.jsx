@@ -58,7 +58,6 @@ function InputTodo({ editInputVisibility, cancelEdit, editTodo }) {
             className="border px-2 py-2 font-semibold mx-3 text-base rounded-sm outline-violet-500"
             defaultValue={edit}
             onChange={(e) => setEdit(e.target.value)}
-            
           />
           <button
             className="bg-green-500 font-medium text-gray-50 py-2 px-3 rounded-sm"

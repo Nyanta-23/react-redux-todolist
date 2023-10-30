@@ -16,6 +16,8 @@ const initialState = {
       completed: true,
     },
   ],
+
+  filter: "all",
 };
 
 function todoReducer(state = initialState, action) {
@@ -56,22 +58,27 @@ function todoReducer(state = initialState, action) {
       };
 
     case "UPDATED_STATUS_TODO":
-
-    const statusCompleted = state.todos.map((todo) => {
-      if(todo.id === action.payload){
-        console.log(todo.completed);
-        return{
-          ...todo,
-          completed: !todo.completed
+      const statusCompleted = state.todos.map((todo) => {
+        if (todo.id === action.payload) {
+          console.log(todo.completed);
+          return {
+            ...todo,
+            completed: !todo.completed,
+          };
+        } else {
+          return todo;
         }
-      } else{
-        return todo
-      }
-    });
-    return{
-      ...state,
-      todos: statusCompleted
-    }
+      });
+      return {
+        ...state,
+        todos: statusCompleted,
+      };
+    
+    case "FILTER_TODO":
+      return {
+        ...state,
+        filter: action.payload
+      };
 
     default:
       return state;
@@ -99,11 +106,18 @@ export function updateTodo(input) {
   };
 }
 
-export function isCompleted(id){
-  return{
+export function isCompleted(id) {
+  return {
     type: "UPDATED_STATUS_TODO",
-    payload: id
-  }
+    payload: id,
+  };
+}
+
+export function filterTodo(action) {
+  return {
+    type: "FILTER_TODO",
+    payload: action,
+  };
 }
 
 export default todoReducer;

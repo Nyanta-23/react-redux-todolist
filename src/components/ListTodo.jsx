@@ -5,12 +5,23 @@ import { deleteTodo, isCompleted } from "../redux/reducers/todo-reducer";
 
 function ListTodo({ handleEditClick, editInputVisibility }) {
   const { todos } = useSelector((state) => state.todos);
+  const statsFilter = useSelector((state) => state.todos.filter);
   const dispatch = useDispatch();
+
+  const filteringByType = todos.filter((todo) => {
+    if (statsFilter === "completed") {
+      return todo.completed;
+    } else if (statsFilter === "todo") {
+      return !todo.completed;
+    } else{
+      return todo;
+    }
+  });
 
   return (
     <section className="flex justify-center">
       <ul className="flex flex-col mt-5 gap-3 w-[30%]">
-        {todos.map((todo) => (
+        {filteringByType.map((todo) => (
           <li
             key={todo.id}
             className="flex border font-semibold text-base rounded-sm align-middle px-2 py-2 justify-between gap-20 border-gray-300 w-full"

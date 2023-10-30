@@ -13,26 +13,31 @@ function ListTodo({ handleEditClick, editInputVisibility }) {
       return todo.completed;
     } else if (statsFilter === "todo") {
       return !todo.completed;
-    } else{
+    } else {
       return todo;
     }
   });
 
   return (
     <section className="flex justify-center">
-      <ul className="flex flex-col mt-5 gap-3 w-[30%]">
+      <ul className="flex flex-col mt-5 gap-3 w-96">
         {filteringByType.map((todo) => (
           <li
             key={todo.id}
             className="flex border font-semibold text-base rounded-sm align-middle px-2 py-2 justify-between gap-20 border-gray-300 w-full"
           >
             <div className="flex gap-3">
-              <input
-                type="checkbox"
-                className="w-5 cursor-pointer border-none"
-                onChange={() => dispatch(isCompleted(todo.id))}
-                checked={todo.completed}
-              />
+              {!editInputVisibility ? (
+                <input
+                  type="checkbox"
+                  className="w-5 cursor-pointer border-none"
+                  onChange={() => dispatch(isCompleted(todo.id))}
+                  checked={todo.completed}
+                />
+              ) : (
+                <div className="w-5"></div>
+              )}
+
               <h5
                 className={
                   todo.completed
@@ -51,7 +56,7 @@ function ListTodo({ handleEditClick, editInputVisibility }) {
                 </button>
               </div>
             ) : (
-              ""
+              <div className="flex gap-2"></div>
             )}
           </li>
         ))}
